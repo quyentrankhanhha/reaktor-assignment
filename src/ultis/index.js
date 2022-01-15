@@ -16,6 +16,6 @@ export const getWinner = (nameA, playA, nameB, playB) => {
     winner = nameA
   } else if (playB === 'SCISSORS' && playA === 'PAPER') {
     winner = nameB
-  }
+  } else winner = '-'
   return winner
 }
