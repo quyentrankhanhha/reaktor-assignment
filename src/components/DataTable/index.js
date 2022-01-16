@@ -12,37 +12,38 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { getWinner } from '../../ultis'
+import { getWinner } from '../../utils'
 import styles from './styles.module.css'
 
 const columns = [
   { id: 'gameId', label: 'Game ID', minWidth: 100 },
-  { id: 'playerA', label: 'Player A', minWidth: 170 },
+  { id: 'time', label: 'Time', minWidth: 150 },
+  { id: 'playerA', label: 'Player A', minWidth: 150 },
   {
     id: 'playedA',
     label: 'Played A',
-    minWidth: 100,
+    minWidth: 80,
   },
   {
     id: 'playerB',
     label: 'Player B',
-    minWidth: 170,
+    minWidth: 150,
   },
   {
     id: 'playedB',
     label: 'Played B',
-    minWidth: 100,
+    minWidth: 80,
   },
   {
     id: 'winner',
     label: 'Winner',
-    minWidth: 170,
+    minWidth: 150,
   },
 ]
 
-function createData(gameId, playerA, playedA, playerB, playedB) {
+function createData(gameId, time, playerA, playedA, playerB, playedB) {
   let winner = getWinner(playerA, playedA, playerB, playedB)
-  return { gameId, playerA, playedA, playerB, playedB, winner }
+  return { gameId, time, playerA, playedA, playerB, playedB, winner }
 }
 export const DataTable = ({ gameHistory }) => {
   const [page, setPage] = useState(0)
@@ -60,6 +61,7 @@ export const DataTable = ({ gameHistory }) => {
   const rows = gameHistory?.map((match) =>
     createData(
       match.gameId,
+      new Date(match.t).toLocaleString(),
       match.playerA.name,
       match.playerA.played,
       match.playerB.name,
@@ -103,9 +105,7 @@ export const DataTable = ({ gameHistory }) => {
                         const value = row[column.id]
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
+                            {value}
                           </TableCell>
                         )
                       })}
