@@ -12,39 +12,10 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { getWinner } from '../../utils'
+import { columnsTableData } from '../../constant'
+import { createDataTable } from '../../utils'
 import styles from './styles.module.css'
 
-const columns = [
-  { id: 'gameId', label: 'Game ID', minWidth: 100 },
-  { id: 'time', label: 'Time', minWidth: 150 },
-  { id: 'playerA', label: 'Player A', minWidth: 150 },
-  {
-    id: 'playedA',
-    label: 'Played A',
-    minWidth: 80,
-  },
-  {
-    id: 'playerB',
-    label: 'Player B',
-    minWidth: 150,
-  },
-  {
-    id: 'playedB',
-    label: 'Played B',
-    minWidth: 80,
-  },
-  {
-    id: 'winner',
-    label: 'Winner',
-    minWidth: 150,
-  },
-]
-
-function createData(gameId, time, playerA, playedA, playerB, playedB) {
-  let winner = getWinner(playerA, playedA, playerB, playedB)
-  return { gameId, time, playerA, playedA, playerB, playedB, winner }
-}
 export const DataTable = ({ gameHistory }) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
@@ -59,7 +30,7 @@ export const DataTable = ({ gameHistory }) => {
   }
 
   const rows = gameHistory?.map((match) =>
-    createData(
+    createDataTable(
       match.gameId,
       new Date(match.t).toLocaleString(),
       match.playerA.name,
@@ -79,7 +50,7 @@ export const DataTable = ({ gameHistory }) => {
           <Table stickyHeader aria-label='sticky table'>
             <TableHead className={styles.title}>
               <TableRow>
-                {columns.map((column) => (
+                {columnsTableData.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
@@ -101,7 +72,7 @@ export const DataTable = ({ gameHistory }) => {
                       tabIndex={-1}
                       key={`history-game-${uuidv4()}`}
                     >
-                      {columns.map((column) => {
+                      {columnsTableData.map((column) => {
                         const value = row[column.id]
                         return (
                           <TableCell key={column.id} align={column.align}>

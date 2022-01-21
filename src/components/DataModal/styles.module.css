@@ -2,7 +2,18 @@
   padding: 10px 0;
 }
 
-.number_wrapper {
-  border: 1px solid #fff;
-  box-shadow: 1px;
+.info_wrapper {
+  margin: 0 16px !important;
+  padding: 16px !important;
+  border-left: 5px solid #1e90ff;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.purple {
+  border-left: 5px solid #5352ed;
+}
+
+.number {
+  font-size: 30px;
 }

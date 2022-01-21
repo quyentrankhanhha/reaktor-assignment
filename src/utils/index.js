@@ -116,3 +116,15 @@ export const gameInfo = (gameHistory, playerName) => {
     playedMost,
   }
 }
+
+export const createDataTable = (
+  gameId,
+  time,
+  playerA,
+  playedA,
+  playerB,
+  playedB
+) => {
+  let winner = getWinner(playerA, playedA, playerB, playedB)
+  return { gameId, time, playerA, playedA, playerB, playedB, winner }
+}

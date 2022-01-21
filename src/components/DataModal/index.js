@@ -1,7 +1,22 @@
 import CloseIcon from '@mui/icons-material/Close'
-import { Avatar, Box, Grid, IconButton, Modal, Typography } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Grid,
+  IconButton,
+  Modal,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from '@mui/material'
+import clsx from 'clsx'
 import React from 'react'
-import { modalStyle } from '../../constant'
+import { columnsModal, modalStyle } from '../../constant'
 import styles from './styles.module.css'
 
 const DataModal = ({ open, handleClose, playerInfo }) => {
@@ -48,21 +63,59 @@ const DataModal = ({ open, handleClose, playerInfo }) => {
           direction='row'
           justifyContent='center'
           alignItems='center'
-          spacing={3}
+          style={{ margin: '10px 0' }}
         >
-          <Grid item className={styles.number_wrapper}>
-            <Typography>{playerInfo?.totalMatches}</Typography>
+          <Grid item xs={3} className={styles.info_wrapper}>
+            <Typography className={styles.number}>
+              {playerInfo?.totalMatches}
+            </Typography>
             <Typography>Number of matches</Typography>
           </Grid>
-          <Grid item className={styles.number_wrapper}>
-            <Typography>{playerInfo?.winRatio}%</Typography>
+          <Grid
+            item
+            xs={3}
+            className={clsx(styles.info_wrapper, styles.purple)}
+          >
+            <Typography className={styles.number}>
+              {playerInfo?.winRatio}%
+            </Typography>
             <Typography>Win ratio</Typography>
           </Grid>
-          <Grid item className={styles.number_wrapper}>
-            <Typography>{playerInfo?.playedMost.times}</Typography>
-            <Typography>{playerInfo?.playedMost.text}</Typography>
+          <Grid item xs={3} className={styles.info_wrapper}>
+            <Typography className={styles.number}>
+              {playerInfo?.playedMost?.times}
+            </Typography>
+            <Typography>{playerInfo?.playedMost?.text}</Typography>
           </Grid>
         </Grid>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                {columnsModal.map((column) => (
+                  <TableCell key={column.id}>{column.label}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            {playerInfo?.playerInfo && (
+              <TableBody>
+                {playerInfo?.playerInfo?.map((row, index) => (
+                  <TableRow
+                    key={`row-${index}`}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell align='left'>{row?.gameId}</TableCell>
+                    <TableCell align='left'>{row?.date}</TableCell>
+                    <TableCell align='left'>{row?.play}</TableCell>
+                    <TableCell align='left'>{row?.opponentName}</TableCell>
+                    <TableCell align='left'>{row?.opponentPlay}</TableCell>
+                    <TableCell align='left'>{row?.winner}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            )}
+          </Table>
+        </TableContainer>
       </Box>
     </Modal>
   )

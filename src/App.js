@@ -10,7 +10,6 @@ import Search from './components/Search'
 function App() {
   const [gameHistory, setGameHistory] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [cursor, setCursor] = useState('')
 
   useEffect(() => {
     axios
@@ -22,7 +21,6 @@ function App() {
       })
       .then((response) => {
         setGameHistory(response.data.data)
-        setCursor(response.data.cursor)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -57,7 +55,7 @@ function App() {
         <Route
           path='*'
           render={() => (
-            <main style={{ padding: '1rem' }}>
+            <main className='container' style={{ padding: '1rem' }}>
               <p>There's nothing here!</p>
             </main>
           )}
