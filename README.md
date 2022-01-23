@@ -4,10 +4,6 @@
 
 This assignment displays displays rock-paper-scissors match results . This is the Frontend version of the assignment.
 
-## DEMO VIDEO OF THE PROJECT
-
-Click here to see the project without installing anything!
-
 ## Technology
 
 ![React](https://img.shields.io/badge/ReactJs-17.0.2-blue) ![MUI](https://img.shields.io/badge/MUI-5.2.5-9cf) ![axios](https://img.shields.io/badge/axios-0.24.0-red)![uuid](https://img.shields.io/badge/uuid-8.3.2-red)
