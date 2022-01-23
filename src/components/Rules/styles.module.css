@@ -3,7 +3,12 @@
 }
 
 .rule_wrapper {
-  padding: 16px 36px;
+  padding: 8px 36px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600 !important;
 }
 
 .center {

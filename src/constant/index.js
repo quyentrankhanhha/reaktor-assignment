@@ -1,3 +1,5 @@
+export const liveURL = 'wss://bad-api-assignment.reaktor.com/rps/live'
+
 export const drawerWidth = 220
 
 export const modalStyle = {

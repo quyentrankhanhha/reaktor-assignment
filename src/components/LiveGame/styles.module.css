@@ -1,0 +1,12 @@
+.live_wrapper {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.live_wrapper h5 {
+  font-weight: 600;
+}
+
+.live_info_wrapper {
+  padding: 0 24px;
+}

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import './App.css'
 import CustomNavigator from './components/CustomNavigator'
 import { DataTable } from './components/DataTable'
+import LiveGame from './components/LiveGame'
 import Rules from './components/Rules'
 import Search from './components/Search'
 
@@ -20,7 +21,7 @@ function App() {
         },
       })
       .then((response) => {
-        setGameHistory(response.data.data)
+        setGameHistory(response.data.data.sort((a, b) => b.t - a.t))
       })
       .catch((err) => console.log(err))
   }, [])
@@ -51,6 +52,7 @@ function App() {
           path='/history'
           render={(props) => <DataTable gameHistory={gameHistory} {...props} />}
         />
+        <Route exact path='/live' render={(props) => <LiveGame {...props} />} />
         <Route exact path='/rules' render={(props) => <Rules {...props} />} />
         <Route
           path='*'

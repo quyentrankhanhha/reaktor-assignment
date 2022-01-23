@@ -128,3 +128,24 @@ export const createDataTable = (
   let winner = getWinner(playerA, playedA, playerB, playedB)
   return { gameId, time, playerA, playedA, playerB, playedB, winner }
 }
+
+export const handleMatch = (game) => {
+  let match
+  if (game.type === 'GAME_RESULT')
+    match = {
+      gameId: game.gameId,
+      t: game.t,
+      playerA: { name: game.playerA.name, played: game.playedA.played },
+      playerB: { name: game.playerB.name, played: game.playedB.played },
+      isPlaying: false,
+    }
+  else
+    match = {
+      gameId: game.gameId,
+      t: 0,
+      playerA: { name: game.playerA.name, played: '' },
+      playerB: { name: game.playerB.name, played: '' },
+      isPlaying: true,
+    }
+  return match
+}
